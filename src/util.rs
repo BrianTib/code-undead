@@ -5,7 +5,8 @@ use std::{
     ops::{Bound, RangeBounds},
     path::Path,
     str::FromStr,
-    time::SystemTime
+    thread,
+    time::{SystemTime, Duration}
 };
 
 pub fn collect_input_str(prompt: Option<&str>) -> Result<String, io::Error> {
@@ -162,4 +163,8 @@ pub fn load_from_file_bin(file_path: &str) -> Result<Vec<u8>, io::Error> {
 pub fn save_to_file_bin(file_path: &str, buffer: &Vec<u8>) -> Result<(), io::Error> {
     fs::write(file_path, buffer)?;
     Ok(())
+}
+
+pub fn sleep(millis: u64) {
+    thread::sleep(Duration::from_millis(millis));
 }
